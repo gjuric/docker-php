@@ -33,6 +33,9 @@ RUN apt-get update && \
     unzip
 
 # Clear archives in apt cache folder
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN apt-get clean && apt-get --yes --quiet autoremove --purge && \
+    rm -rf  /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+            /usr/share/doc/* /usr/share/groff/* /usr/share/info/* /usr/share/linda/* \
+			/usr/share/lintian/* /usr/share/locale/* /usr/share/man/*
 
 ENTRYPOINT ["/bin/bash"]
